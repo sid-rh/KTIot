@@ -1,0 +1,33 @@
+.room-item {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .room-info {
+    flex: 1;
+  }
+  
+  .room-info h3 {
+    margin: 0;
+  }
+  
+  .likes {
+    display: flex;
+    align-items: center;
+  }
+  
+  .likes svg {
+    margin-right: 8px;
+  }
+  
+  .likes span {
+    font-weight: bold;
+  }
+
+  .liked {
+    color: red; 
+  }
