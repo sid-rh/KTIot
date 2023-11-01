@@ -55,7 +55,20 @@ const getAllDevices=async(req,res)=>
     if(!req.currentUser.isAdmin) return res.status(400).send("Unauthorized");
 
     try {
-        const devices=await Device.find();
+        const devices=await Device.aggregate([
+            {
+                $lookup: {
+                  from: 'users', 
+                  localField: 'alloted_to_user',
+                  foreignField: '_id',
+                  
+                  as: 'user', 
+                },
+              },
+              {
+                $project:{"user._id":0,"user.password":0,"user.alloted_devices":0,"user.rooms":0,"user.isAdmin":0}
+              }
+        ]);
         res.status(200).json(devices);
     } catch (error) {
         res.status(500).json({ error: error.message });
